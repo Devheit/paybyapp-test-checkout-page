@@ -2,25 +2,18 @@ import { Button, Container, Navbar, Modal } from "react-bootstrap";
 import { useState, useContext, useEffect } from "react";
 import { CartContext } from "../CartContext";
 import CartProduct from "./CartProduct";
-// import * as PayByApp from "pay-by-app-widget";
-
-// const { mountApp } = PayByApp.default;
-
+import PaydeetPlugin from "paydeet-pay-by-app-plugin";
 function NavbarComponent() {
   const cart = useContext(CartContext);
 
-  //   const initialize = () => {
-  //     console.log("I am checking out");
-  //     mountApp.mountApp({
-  //       amount: cart.getTotalCost().toFixed(2),
-  //       merchantId: "asdasdasdasd",
-  //     });
-  //   };
-  const initialize = () => {
-    console.log("I am checking out");
+  const initialize = async () => {
+    await PaydeetPlugin.checkout({
+      amount: cart.getTotalCost() / 100, // Amount in cents
+      merchantId: "your-merchant-id",
+      apiKey: "123456789ab",
+      currency: "USD",
+    });
   };
-
-  // useEffect(() => {}, []);
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
