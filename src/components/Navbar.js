@@ -1,8 +1,8 @@
-import { Button, Container, Navbar, Modal } from "react-bootstrap";
-import { useState, useContext, useEffect } from "react";
+import PaydeetPlugin from "paydeet-pay-by-app-plugin";
+import { useContext, useState } from "react";
+import { Button, Modal, Navbar } from "react-bootstrap";
 import { CartContext } from "../CartContext";
 import CartProduct from "./CartProduct";
-import PaydeetPlugin from "paydeet-pay-by-app-plugin";
 function NavbarComponent() {
   const cart = useContext(CartContext);
 
