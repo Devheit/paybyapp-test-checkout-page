@@ -1,4 +1,4 @@
-import PaydeetPlugin from "paydeet-pay-by-app-plugin";
+//import PaydeetPlugin from "paydeet-pay-by-app-plugin";
 import { useContext, useState } from "react";
 import { Button, Modal, Navbar } from "react-bootstrap";
 import { CartContext } from "../CartContext";
@@ -7,12 +7,13 @@ function NavbarComponent() {
   const cart = useContext(CartContext);
 
   const initialize = async () => {
-    await PaydeetPlugin.checkout({
-      amount: cart.getTotalCost() / 100, // Amount in cents
-      merchantId: "your-merchant-id",
-      apiKey: "123456789ab",
-      currency: "USD",
-    });
+    console.log("<==============awaiting pluginnn===========>");
+    // await PaydeetPlugin.checkout({
+    //   amount: cart.getTotalCost() / 100, // Amount in cents
+    //   merchantId: "your-merchant-id",
+    //   apiKey: "123456789ab",
+    //   currency: "USD",
+    // });
   };
 
   const [show, setShow] = useState(false);
