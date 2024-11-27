@@ -8,7 +8,7 @@ function NavbarComponent() {
 
   const initialize = async () => {
     await PaydeetPlugin.checkout({
-      amount: cart.getTotalCost() / 100, // Amount in cents
+      amount: cart.getTotalCost(), // Amount in cents
       merchantId: "your-merchant-id",
       apiKey: "123456789ab",
       currency: "USD",
