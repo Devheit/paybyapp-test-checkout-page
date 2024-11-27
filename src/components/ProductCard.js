@@ -1,6 +1,7 @@
 import { Card, Button, Form, Row, Col } from "react-bootstrap";
 import { CartContext } from "../CartContext";
 import { useContext } from "react";
+import { formatCurrency } from "../lib/utils";
 
 function ProductCard(props) {
   // props.product is the product we are selling
@@ -11,7 +12,7 @@ function ProductCard(props) {
     <Card>
       <Card.Body>
         <Card.Title>{product.title}</Card.Title>
-        <Card.Text>${product.price}</Card.Text>
+        <Card.Text>{formatCurrency(product.price,"NGN")}</Card.Text>
         {productQuantity > 0 ? (
           <>
             <Form as={Row}>
