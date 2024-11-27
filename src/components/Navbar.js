@@ -3,15 +3,16 @@ import { useContext, useState } from "react";
 import { Button, Modal, Navbar } from "react-bootstrap";
 import { CartContext } from "../CartContext";
 import CartProduct from "./CartProduct";
+import { formatCurrency } from "../lib/utils";
 function NavbarComponent() {
   const cart = useContext(CartContext);
 
   const initialize = async () => {
     await PaydeetPlugin.checkout({
-      amount: cart.getTotalCost(), // Amount in cents
+      amount: cart.getTotalCost(), 
       merchantId: "your-merchant-id",
       apiKey: "123456789ab",
-      currency: "USD",
+      currency: "NGN",
     });
   };
 
@@ -49,7 +50,7 @@ function NavbarComponent() {
                 ></CartProduct>
               ))}
 
-              <h1>Total: {cart.getTotalCost().toFixed(2)}</h1>
+              <h1>Total: {formatCurrency(cart.getTotalCost().toFixed(2),"NGN")}</h1>
 
               <Button variant="success" onClick={initialize}>
                 Purchase items!
