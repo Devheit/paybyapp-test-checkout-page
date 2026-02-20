@@ -1,4 +1,4 @@
-import PaydeetPlugin from "paydeet-pay-by-app-plugin";
+import PaydeetPlugin from "@devheit/paydeet-pay-by-app-plugin";
 import { useContext, useState } from "react";
 import { Button, Modal, Navbar } from "react-bootstrap";
 import { CartContext } from "../CartContext";
