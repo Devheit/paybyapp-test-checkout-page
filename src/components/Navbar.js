@@ -8,11 +8,12 @@ function NavbarComponent() {
   const cart = useContext(CartContext);
 
   const initialize = async () => {
+    const randomBusinessId = `BIZ-${Math.random().toString(36).substring(2, 15)}-${Date.now()}`;
     await PaydeetPlugin.checkout({
       amount: cart.getTotalCost(), 
-      merchantId: "your-merchant-id",
       apiKey: "123456789ab",
       currency: "NGN",
+      businessId: randomBusinessId,
     });
   };
 
