@@ -1,7 +1,7 @@
-import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 import NavbarComponent from "./components/Navbar";
-import { Container } from "react-bootstrap";
+import Footer from "./components/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Cancel from "./pages/Cancel";
 import Store from "./pages/Store";
@@ -11,16 +11,17 @@ import CartProvider from "./CartContext";
 function App() {
   return (
     <CartProvider>
-      <Container>
-        <NavbarComponent></NavbarComponent>
-        <BrowserRouter>
+      <BrowserRouter>
+        <NavbarComponent />
+        <main className="site-main">
           <Routes>
             <Route index element={<Store />} />
             <Route path="success" element={<Success />} />
             <Route path="cancel" element={<Cancel />} />
           </Routes>
-        </BrowserRouter>
-      </Container>
+        </main>
+        <Footer />
+      </BrowserRouter>
     </CartProvider>
   );
 }
