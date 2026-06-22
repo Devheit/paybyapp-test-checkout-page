@@ -1,55 +1,65 @@
-import { Card, Button, Form, Row, Col } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import { CartContext } from "../CartContext";
 import { useContext } from "react";
 import { formatCurrency } from "../lib/utils";
 
-function ProductCard(props) {
-  // props.product is the product we are selling
-  const product = props.product;
+const badgeClass = (badge) => {
+  if (!badge) return "";
+  const map = { "New": "new", "Hot": "hot", "Limited": "limited" };
+  return map[badge] || "";
+};
+
+function ProductCard({ product }) {
   const cart = useContext(CartContext);
-  const productQuantity = cart.getProductQuantity(product.id);
+  const qty = cart.getProductQuantity(product.id);
+
   return (
-    <Card>
-      <Card.Body>
-        <Card.Title>{product.title}</Card.Title>
-        <Card.Text>{formatCurrency(product.price,"NGN")}</Card.Text>
-        {productQuantity > 0 ? (
+    <Card className="luxe-card">
+      <div className="card-img-wrapper">
+        <img src={product.image} alt={product.title} />
+        {product.badge && (
+          <span className={`card-badge ${badgeClass(product.badge)}`}>
+            {product.badge}
+          </span>
+        )}
+      </div>
+      <Card.Body style={{ padding: "18px 20px 20px" }}>
+        <div className="card-category-pill">{product.category}</div>
+        <Card.Title className="card-title">{product.title}</Card.Title>
+        <p className="card-desc">{product.description}</p>
+        <div className="card-price">{formatCurrency(product.price, "NGN")}</div>
+
+        {qty > 0 ? (
           <>
-            <Form as={Row}>
-              <Form.Label column="true" sm="6">
-                In Cart: {productQuantity}
-              </Form.Label>
-              <Col sm="6">
-                <Button
-                  sm="6"
-                  onClick={() => cart.addOneToCart(product.id)}
-                  className="mx-2"
-                >
-                  +
-                </Button>
-                <Button
-                  sm="6"
-                  onClick={() => cart.removeOneFromCart(product.id)}
-                  className="mx-2"
-                >
-                  -
-                </Button>
-              </Col>
-            </Form>
+            <div className="qty-row">
+              <span className="qty-label">In cart:</span>
+              <button
+                className="btn btn-qty"
+                onClick={() => cart.removeOneFromCart(product.id)}
+              >
+                −
+              </button>
+              <span className="qty-count">{qty}</span>
+              <button
+                className="btn btn-qty"
+                onClick={() => cart.addOneToCart(product.id)}
+              >
+                +
+              </button>
+            </div>
             <Button
-              variant="danger"
+              className="btn-remove"
               onClick={() => cart.deleteFromCart(product.id)}
-              className="my-2"
             >
               Remove from cart
             </Button>
           </>
         ) : (
           <Button
-            variant="primary"
+            className="btn-add-cart"
             onClick={() => cart.addOneToCart(product.id)}
           >
-            Add To Cart
+            Add to Cart
           </Button>
         )}
       </Card.Body>

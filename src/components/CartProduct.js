@@ -1,24 +1,35 @@
-import Button from 'react-bootstrap/Button';
-import { CartContext } from "../CartContext";
 import { useContext } from "react";
+import { CartContext } from "../CartContext";
 import { getProductData } from "../productsStore";
-import { formatCurrency } from '../lib/utils';
+import { formatCurrency } from "../lib/utils";
 
-function CartProduct(props) {
-    const cart = useContext(CartContext);
-    const id = props.id;
-    const quantity = props.quantity;
-    const productData = getProductData(id);
+function CartProduct({ id, quantity }) {
+  const cart = useContext(CartContext);
+  const product = getProductData(id);
 
-    return (
-        <>
-            <h3>{productData.title}</h3>
-            <p>{quantity} total</p>
-            <p>{ formatCurrency((quantity * productData.price).toFixed(2),"NGN")  }</p>
-            <Button size="sm" onClick={() => cart.deleteFromCart(id)}>Remove</Button>
-            <hr></hr>
-        </>
-    )
+  return (
+    <div className="cart-item">
+      <img
+        src={product.image}
+        alt={product.title}
+        className="cart-item-img"
+      />
+      <div className="cart-item-info">
+        <p className="cart-item-title">{product.title}</p>
+        <p className="cart-item-qty">Qty: {quantity}</p>
+      </div>
+      <div className="cart-item-price">
+        {formatCurrency((quantity * product.price).toFixed(2), "NGN")}
+      </div>
+      <button
+        className="cart-item-remove btn"
+        onClick={() => cart.deleteFromCart(id)}
+        title="Remove"
+      >
+        ✕
+      </button>
+    </div>
+  );
 }
 
 export default CartProduct;
