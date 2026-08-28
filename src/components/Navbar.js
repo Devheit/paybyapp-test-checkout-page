@@ -10,12 +10,12 @@ function NavbarComponent() {
 
   const initialize = async () => {
     if (cart.getTotalCost() <= 0) return;
-    const randomBusinessId = `BIZ-${Math.random().toString(36).substring(2, 15)}-${Date.now()}`;
+    // const randomBusinessId = `BIZ-${Math.random().toString(36).substring(2, 15)}-${Date.now()}`;
     await PaydeetPlugin.checkout({
       amount: cart.getTotalCost(),
       apiKey: "123456789ab",
       currency: "NGN",
-      businessId: randomBusinessId,
+      businessId: 1,
     });
   };
 
