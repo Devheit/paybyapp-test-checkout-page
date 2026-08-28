@@ -15,7 +15,7 @@ function NavbarComponent() {
       amount: cart.getTotalCost(),
       apiKey: "123456789ab",
       currency: "NGN",
-      businessId: 1,
+      businessId: '1',
     });
   };
 
