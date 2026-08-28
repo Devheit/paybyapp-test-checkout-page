@@ -2,7 +2,7 @@ const productsArray = [
   {
     id: 'price_1LnUTFDM1jwCEz8OGoOSXiSM',
     title: 'Coffee',
-    price: 3000,
+    price: 300,
     image:
       'https://images.unsplash.com/photo-1556742526-795a8eac090e?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     category: 'Lifestyle',
@@ -22,7 +22,7 @@ const productsArray = [
   {
     id: 'price_1LnUUoDM1jwCEz8OvxIcJ7to',
     title: 'Camera',
-    price: 10000,
+    price: 1000,
     image:
       'https://plus.unsplash.com/premium_photo-1663134149019-284682ece04c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     category: 'Electronics',
